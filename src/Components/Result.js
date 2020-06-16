@@ -3,7 +3,8 @@ import React, { Component } from 'react'
 import CapitalGainsTax from './CapitalGainsTax';
 import Form11 from './Form11';
 import FormsToPopulate from './FormsToPopulate';
-import UsefulInfo from './UsefulInfo';
+
+
 
 export class Result extends Component {
 
@@ -67,7 +68,7 @@ export class Result extends Component {
     }
 
     render() {
-        let {transactions} = this.props
+        let {transactions, year} = this.props
         let esppTransactions = []
 
         transactions.forEach(transaction => {
@@ -77,8 +78,7 @@ export class Result extends Component {
         })
 
         let totalCapitalGainToPayForYear = this.getTotalCapitalGainToPayForYear()
-
-        console.log(esppTransactions)
+    
         return (
             transactions.length > 0 ? 
             <React.Fragment>
@@ -86,11 +86,10 @@ export class Result extends Component {
                     transactions={transactions}  
                     esppTransactions={esppTransactions} 
                     totalCapitalGainToPayForYear={totalCapitalGainToPayForYear}
-                    year={new Date(transactions[0].transactionDate).getFullYear()}  />
-                <UsefulInfo />
+                    year={year}  />
                 {
                     totalCapitalGainToPayForYear > 0 ? 
-                        <CapitalGainsTax cgtToPay={totalCapitalGainToPayForYear} payByDate="" />    
+                        <CapitalGainsTax cgtToPay={totalCapitalGainToPayForYear} year={year} />    
                         : ''
                 }
                 
@@ -98,7 +97,8 @@ export class Result extends Component {
                     AnnualRTSOPaid={this.getAnnualRTSOPaid(esppTransactions)} 
                     chargeableAssestsAcquired={this.getChargeableAssestsAcquired()} 
                     chargeableGain={this.getChargeableGain()} 
-                    totalCapitalGainToPayForYear={totalCapitalGainToPayForYear} />
+                    totalCapitalGainToPayForYear={totalCapitalGainToPayForYear}
+                    year={year} />
             </React.Fragment>
             : ''
         )

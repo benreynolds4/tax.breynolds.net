@@ -5,15 +5,18 @@ import InputGrid from './InputGrid'
 
 export class Form11 extends Component {
     render() {
-        const {totalChargeableAmount, AnnualRTSOPaid, chargeableAssestsAcquired, chargeableGain, totalCapitalGainToPayForYear } = this.props
+        const {totalChargeableAmount, AnnualRTSOPaid, chargeableAssestsAcquired, chargeableGain, totalCapitalGainToPayForYear, year } = this.props
         return (
             <Col xl={12} lg={12} md={12} sm={12} >
                 <div className="login-screen">
                     <div className="login-box">
                         <div className="login-logo">
-                            <h2>Form 11</h2>
+                             <h2>Form 11: {year} </h2>
                             <p>
-                                Fill in sections with values from below
+                                A form11 needs to be filled for tax year {year}. 
+                            </p>
+                            <p>
+                                Fill in sections in the form11 with values as below
                             </p>
                             <div className="login-screen">
                                 <div className="login-box">
