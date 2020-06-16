@@ -100,10 +100,6 @@ class InputTransaction extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        if(!this.validateOnlyOneYear()) {
-            alert('Can only enter information from a single calender year')
-            return null
-        } 
         if(!this.validatePastDate()) {
             alert("Can't enter future transaction")
             return null
