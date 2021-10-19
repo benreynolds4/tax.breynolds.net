@@ -104,11 +104,13 @@ class InputTransaction extends Component {
             alert("Can't enter future transaction")
             return null
         }
-        var exchange_rate_url = `https://api.exchangeratesapi.io/${this.state.transactionDate}?base=USD&symbols=EUR`;
+        var exchange_rate_url = `http://api.exchangeratesapi.io/${this.state.transactionDate}?access_key=e23315e73e1f2bfa4db54e422f9b1538&base=USD&symbols=EUR`;
+        exchange_rate_url = `https://freecurrencyapi.net/api/v2/historical?apikey=8f4a14f0-30fc-11ec-ba54-e3275e6bd631&base_currency=USD&date_from=${this.state.transactionDate}&date_to=${this.state.transactionDate}`
         axios.get(exchange_rate_url)
         .then((res) => {
             console.log(res.data);
-            let exchange_rate = res.data.rates.EUR
+            let exchange_rate = res.data.data[this.state.transactionDate].EUR;
+            console.log(exchange_rate);
             this.setState({
                 exchangeRate: exchange_rate,
                 salePriceEuro: this.exhange(exchange_rate, this.state.salePriceDollars),
